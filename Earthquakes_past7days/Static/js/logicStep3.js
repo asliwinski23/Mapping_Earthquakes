@@ -54,7 +54,7 @@ function styleInfo(feature) {
   return {
     opacity: 1,
     fillOpacity: 1,
-    fillColor: "orange",
+    fillColor: getColor(feature.properties.mag),
     color: "#000000",
     radius: getRadius(feature.properties.mag),
     stroke: true,
@@ -69,6 +69,26 @@ function getRadius(magnitude) {
     return 1;
   }
   return magnitude * 4;
+}
+
+// This function determines the color of the circle based on the magnitude of the earthquake.
+function getColor(magnitude) {
+  if (magnitude > 5) {
+    return "red";
+  }
+  if (magnitude > 4) {
+    return "orange";
+  }
+  if (magnitude > 3) {
+    return "yellow";
+  }
+  if (magnitude > 2) {
+    return "green";
+  }
+  if (magnitude > 1) {
+    return "blue";
+  }
+  return "purple";
 }
 
 // Retrieve the earthquake GeoJSON data.
